@@ -1,0 +1,12 @@
+Flask==0.10.1
+Jinja2==2.7.3
+MarkupSafe==0.23
+Werkzeug==0.9.6
+cm-api==8.0.0
+itsdangerous==0.24
+jenkinsapi==0.2.25
+newrelic-api==1.0.2
+pytz==2014.10
+readline==6.2.4.1
+requests==2.5.0
+wsgiref==0.1.2
