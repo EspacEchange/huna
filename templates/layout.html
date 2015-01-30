@@ -199,16 +199,19 @@
 		  <!-- LAST MONTH REVENUE -->     
 	        <div class="col-sm-3 col-lg-3">
 	      		<div class="dash-unit">
-		      		<dtitle>Last Month Revenue</dtitle>
+		      		<dtitle>Cloudera Test Server status</dtitle>
 		      		<hr>
 		      		<div class="cont">
-						<p><bold>$879</bold> | <ok>Approved</ok></p>
-						<br>
-						<p><bold>$377</bold> | Pending</p>
-						<br>
-						<p><bold>$156</bold> | <bad>Denied</bad></p>
-						<br>
-						<p><img src="static/img/up-small.png" alt=""> 12% Compared Last Month</p>
+						<p><bold>{{ cm.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
+						<p><bold>{{ cm.server_stats()['OTHER'] }}</bold> | OTHER</p>
+						<p><bold>{{ cm.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
+						<p>
+							{% for s in cm.server_bad() %}
+							<div>
+								{{ s['service'] }}
+							</div>
+							{% endfor %}
+						</p>
 
 					</div>
 

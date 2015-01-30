@@ -21,8 +21,10 @@ SITE_NAME = 'Huna Dashboard'
 NEWRELIC_KEY = '87cc8e42ea238a1b3fb6448cecd53f1126ac83e0'
 
 # Cloudera
-CLOUDERA_URL = 'http://clouderaurl.fr'
-CLOUDERA_KEY = '87cc8e42ea238a1b3fb6448cecd53f1126ac83e0'
+CLOUDERA_HOST = 'http://clouderaurl.fr'
+CLOUDERA_PORT = 7180
+CLOUDERA_USERNAME = 'admin'
+CLOUDERA_PASSWORD = 'password'
 
 # Jenkins
 JENKINS_URL = 'http://jenkinsurl.fr'
