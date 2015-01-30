@@ -39,4 +39,5 @@ def favicon():
     return app.send_static_file('img/favicon.ico')
 
 if __name__ == '__main__':
-    app.run(host=app.config['HOST'], port=app.config['PORT'])
+    app.run(host=app.config.get('HOST', '0.0.0.0'),
+            port=app.config.get('PORT', 5000))
