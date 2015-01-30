@@ -5,10 +5,11 @@
 # new_relic.py
 
 from __future__ import unicode_literals
-from collections import Counter
 
 from flask import current_app as app
 from newrelic_api import Applications, Servers
+
+import utils
 
 
 class NewRelic():
@@ -25,4 +26,4 @@ class NewRelic():
                 for s in Applications(api_key=self.api_key).list()]
 
     def health_stats(self):
-        return Counter(map(lambda status: status['health_status'], self.get_servers_statuses()))
+        return utils.list_of_d_stats(self.get_servers_statuses(), 'health_status')
