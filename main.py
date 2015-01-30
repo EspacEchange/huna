@@ -6,7 +6,6 @@
 from __future__ import unicode_literals
 import logging
 from logging.handlers import RotatingFileHandler
-from collections import Counter
 
 from flask import Flask, render_template
 
@@ -30,8 +29,12 @@ app.logger.addHandler(handler)
 # Homepage
 @app.route('/')
 def index():
-    cm = ClouderaManager(app.config['CLOUDERA_HOST'], app.config['CLOUDERA_PORT'], app.config['CLOUDERA_USERNAME'], app.config['CLOUDERA_PASSWORD'])
+    cm = ClouderaManager(app.config.get('CLOUDERA_HOST', '127.0.0.1'),
+                         app.config.get('CLOUDERA_PORT', 7180),
+                         app.config.get('CLOUDERA_USERNAME', 'admin'),
+                         app.config.get('CLOUDERA_PASSWORD', 'password'))
     return render_template('layout.html', cm=cm)
+
 
 # Favicon route
 @app.route('/favicon.ico')
