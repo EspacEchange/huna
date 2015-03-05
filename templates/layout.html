@@ -196,7 +196,7 @@
 				</div>
 	        </div>
 
-		  <!-- LAST MONTH REVENUE -->     
+		  <!-- Cloudera Test Server -->     
 	        <div class="col-sm-3 col-lg-3">
 	      		<div class="dash-unit">
 		      		<dtitle>Cloudera Test Server status</dtitle>
@@ -245,192 +245,76 @@
 	 
 		  <!-- THIRD ROW OF BLOCKS -->     
 	      <div class="row">
-	      	<div class="col-sm-3 col-lg-3">
-		  
-		  <!-- BARS CHART - lineandbars.js file -->     
-	      		<div class="half-unit">
-		      		<dtitle>Stock Information</dtitle>
-		      		<hr>
-		      		<div class="cont">
-		      		 <div class="info-aapl">
-				        <h4>AAPL</h4>
-				        <ul>
-				          <li><span class="orange" style="height: 37.5%"></span></li>
-				          <li><span class="orange" style="height: 47.5%"></span></li>
-				          <li><span class="orange" style="height: 70%"></span></li>
-				          <li><span class="orange" style="height: 85%"></span></li>
-				          <li><span class="green" style="height: 75%"></span></li>
-				          <li><span class="green" style="height: 50%"></span></li>
-				          <li><span class="green" style="height: 15%"></span></li>
-				        </ul>
-				      </div>
-				      </div>
-	      		</div>
-
-		  <!-- TO DO LIST -->     
-	      		<div class="half-unit">
-		      		<dtitle>To Do List</dtitle>
-		      		<hr>
-		      		<div class="cont">
-						<p><bold>13</bold> | Pending Tasks</p>
-					</div>
-			             <div class="progress">
-					        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%;"><span class="sr-only">60% Complete</span>
-						        
-					        </div>
-					     </div>
-	      		</div>
-	      	</div>
-
-	      	<div class="col-sm-3 col-lg-3">
-
-		  <!-- LIVE VISITORS BLOCK -->     
-	      		<div class="half-unit">
-		      		<dtitle>Live Visitors</dtitle>
-		      		<hr>
-		      		<div class="cont">
-	      			<p><bold>388</bold></p>
-	      			<p><img src="static/img/up-small.png" alt=""> 412 Max. | <img src="static/img/down-small.png" alt=""> 89 Min.</p>
-		      		</div>
-	      		</div>
-	      		
-		  <!-- PAGE VIEWS BLOCK -->     
-	      		<div class="half-unit">
-		      		<dtitle>Page Views</dtitle>
-		      		<hr>
-		      		<div class="cont">
-	      			<p><bold>145.0K</bold></p>
-	      			<p><img src="static/img/up-small.png" alt=""> 23.88%</p>
-		      		</div>
-	      		</div>
-	      	</div>
-
-	      	<div class="col-sm-3 col-lg-3">
-		  <!-- TOTAL SUBSCRIBERS BLOCK -->     
-	      		<div class="half-unit">
-		      		<dtitle>Total Subscribers</dtitle>
-		      		<hr>
-		      		<div class="cont">
-	      			<p><bold>14.744</bold></p>
-	      			<p>98 Subscribed Today</p>
-		      		</div>
-	      		</div>
-	      		
-		  <!-- FOLLOWERS BLOCK -->     
-	      		<div class="half-unit">
-		      		<dtitle>Twitter Followers</dtitle>
-		      		<hr>
-		      		<div class="cont">
-	      			<p><bold>17.833 Followers</bold></p>
-	      			<p>@SomeUser</p>
-		      		</div>
-	      		</div>
-	      	</div>
-
-		  <!-- LATEST NEWS BLOCK -->     
-	      	<div class="col-sm-3 col-lg-3">
+	        <div class="col-sm-3 col-lg-3">
+	       <!-- Production Status -->
 	      		<div class="dash-unit">
-		      		<dtitle>Latest News</dtitle>
-		      		<hr>
-					<div class="info-user">
-						<span aria-hidden="true" class="li_news fs2"></span>
-					</div>
-					<br>
-	      			<div class="text">
-	      				<p><b>{{ config.SITE_NAME }}</b> Please, visit <a></a> for more details.</p>
-	      				<p><grey>Last Update: 5 minutes ago.</grey></p>
-	      			</div>
-	      		</div>
-	      	</div>
-	      </div><!-- /row -->
-	      
-		  <!-- FOURTH ROW OF BLOCKS -->     
-		<div class="row">
-		
-		  <!-- TWITTER WIDGET BLOCK -->     
-			<div class="col-sm-3 col-lg-3">
-				<div class="dash-unit">
-		      		<dtitle>Twitter Widget</dtitle>
-		      		<hr>
-					<div class="info-user">
-						<span aria-hidden="true" class="li_megaphone fs2"></span>
-					</div>
-					<br>
-			 		<div id="jstwitter" class="clearfix">
-						<ul id="twitter_update_list"></ul>
-					</div>
-					<script src="http://twitter.com/javascripts/blogger.js"></script><!-- Script Needed to load the Tweets -->
-					<script src="http://api.twitter.com/1/statuses/user_timeline/wrapbootstrap.json?callback=twitterCallback2&amp;count=1"></script>
-					<!-- To show your tweets replace "wrapbootstrap", in the line above, with your user. -->
-					<div class="text">
-					<p><grey>Show your tweets here!</grey></p>
-					</div>
-				</div>
-			</div>
-
-		  <!-- NOTIFICATIONS BLOCK -->     
-			<div class="col-sm-3 col-lg-3">
-				<div class="dash-unit">
-		      		<dtitle>Notifications</dtitle>
-		      		<hr>
-		      		<div class="info-user">
-						<span aria-hidden="true" class="li_bubble fs2"></span>
-					</div>
+	      		<dtitle>Production Status</dtitle>
+	      		<hr>
+		      		{% if cm.success %}
 		      		<div class="cont">
-		      			<p><button class="btnnew noty" data-noty-options="{&quot;text&quot;:&quot;This is a success notification&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}">Top Right</button></p>
-		      			<p><button class="btnnew noty" data-noty-options="{&quot;text&quot;:&quot;This is an informaton notification&quot;,&quot;layout&quot;:&quot;topLeft&quot;,&quot;type&quot;:&quot;information&quot;}">Top Left</button></p>
-		      			<p><button class="btnnew noty" data-noty-options="{&quot;text&quot;:&quot;This is an alert notification with fade effect.&quot;,&quot;layout&quot;:&quot;topCenter&quot;,&quot;type&quot;:&quot;alert&quot;,&quot;animateOpen&quot;: {&quot;opacity&quot;: &quot;show&quot;}}">Top Center (fade)</button></p>
-		      		</div>
-				</div>
-			</div>
+						<p><bold>{{ nr.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
+						<p><bold>{{ nr.server_stats()['OTHER'] }}</bold> | OTHER</p>
+						<p><bold>{{ nr.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
+						<p>
+							{% for s in nr.server_bad() %}
+							<div>
+								{{ s['service'] }}
+							</div>
+							{% endfor %}
+						</p>
+					</div>
+					{% else %}
+					<div class="cont">
+						<p>Not available.</p>
+					</div>   
+					{% endif %}
+				</div><!-- /dash-unit -->
+	    	</div><!-- /span3 -->
 
-		  <!-- SWITCHES BLOCK -->     
-			<div class="col-sm-3 col-lg-3">
-				<div class="dash-unit">
-		      		<dtitle>Switches</dtitle>
-		      		<hr>
-		      		<div class="info-user">
-						<span aria-hidden="true" class="li_params fs2"></span>
-					</div>
-					<br>
-					<div class="switch">
-						<input type="radio" class="switch-input" name="view" value="on" id="on" checked="">
-						<label for="on" class="switch-label switch-label-off">On</label>
-						<input type="radio" class="switch-input" name="view" value="off" id="off">
-						<label for="off" class="switch-label switch-label-on">Off</label>
-						<span class="switch-selection"></span>
-					</div>
-					<div class="switch switch-blue">
-						<input type="radio" class="switch-input" name="view2" value="week2" id="week2" checked="">
-						<label for="week2" class="switch-label switch-label-off">Week</label>
-						<input type="radio" class="switch-input" name="view2" value="month2" id="month2">
-						<label for="month2" class="switch-label switch-label-on">Month</label>
-						<span class="switch-selection"></span>
-					</div>
-					
-					<div class="switch switch-yellow">
-						<input type="radio" class="switch-input" name="view3" value="yes" id="yes" checked="">
-						<label for="yes" class="switch-label switch-label-off">Yes</label>
-						<input type="radio" class="switch-input" name="view3" value="no" id="no">
-						<label for="no" class="switch-label switch-label-on">No</label>
-						<span class="switch-selection"></span>
-					</div>
+		  <!-- Integration Status -->     
+	        <div class="col-sm-3 col-lg-3">
+	      		<div class="dash-unit">
+	      		<dtitle>Integration Status</dtitle>
+	      		<hr>
+				    <div class="section-graph">
+				      <div id="importantchart"></div>
+				      <br>
+				      <div class="graph-info">
+				        <i class="graph-arrow"></i>
+				        <span class="graph-info-big">634.39</span>
+				        <span class="graph-info-small">+2.18 (3.71%)</span>
+				      </div>
+				    </div>
 				</div>
-			</div>
+	        </div>
 
-		  <!-- GAUGE CHART BLOCK -->     
-			<div class="col-sm-3 col-lg-3">
-				<div class="dash-unit">
-		      		<dtitle>Gauge Chart</dtitle>
+		  <!-- Dev Status -->     
+	        <div class="col-sm-3 col-lg-3">
+	      		<div class="dash-unit">
+		      		<dtitle>Dev Status</dtitle>
 		      		<hr>
-		      		<div class="info-user">
-						<span aria-hidden="true" class="li_lab fs2"></span>
-					</div>
-					<canvas id="canvas" width="300" height="300">
-				</canvas></div>
-			</div>
-		
-		</div><!--/row -->     
+				</div>
+	        </div>
+	        
+		  <!-- 30 DAYS STATS - CAROUSEL FLEXSLIDER -->     
+	        <div class="col-sm-3 col-lg-3">
+	      		<div class="dash-unit">
+		      		<dtitle>Last 30 Days Stats</dtitle>
+		      		<hr>
+		      		<br>
+		      		<br>
+		            <div class="flexslider">
+						<ul class="slides">
+							<li><img src="static/img/slide01.png" alt="slider"></li>
+							<li><img src="static/img/slide02.png" alt="slider"></li>
+						</ul>
+	            </div>
+					<div class="cont">
+						<p>StatCounter Information</p>
+					</div>   
+				</div>
+	        </div>
+	      </div><!-- /row -->
 	      
 	 	  <!-- FOURTH ROW OF BLOCKS -->     
 			<div class="row">

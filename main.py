@@ -10,6 +10,7 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template
 
 from connectors.cloudera_manager import ClouderaManager
+from connectors.new_relic import NewRelic
 
 # Build Flask instance with its config
 app = Flask(__name__)
@@ -33,7 +34,8 @@ def index():
                          app.config.get('CLOUDERA_PORT', 7180),
                          app.config.get('CLOUDERA_USERNAME', 'admin'),
                          app.config.get('CLOUDERA_PASSWORD', 'password'))
-    return render_template('layout.html', cm=cm)
+    nr = NewRelic()
+    return render_template('layout.html', cm=cm, nr=nr)
 
 
 # Favicon route

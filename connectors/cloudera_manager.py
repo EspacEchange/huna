@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Huna
+# cloudera_manager.py
 
 from __future__ import unicode_literals
 import time
@@ -11,10 +12,11 @@ import urllib2
 from cm_api.api_client import ApiResource
 from flask import current_app as app
 
-import utils
+from base_connector import BaseConnector
 
 
-class ClouderaManager():
+class ClouderaManager(BaseConnector):
+
     def __init__(self, host, port, username, password):
         self.host = host
         self.success = False
@@ -63,13 +65,8 @@ class ClouderaManager():
                 for c in self.api.get_all_clusters()
                 for s in c.get_all_services()]
 
-    def convert_health(self, health):
-        if health not in ['GOOD', 'BAD']:
-            return 'OTHER'
-        return health
-
     def server_stats(self):
-        return utils.list_of_dict_stats(self.server_status(), 'group')
+        return self.list_of_dict_stats(self.server_status(), 'group')
 
     def server_bad(self):
         return filter(lambda x: x['group'] == 'OTHER', self.server_status())
