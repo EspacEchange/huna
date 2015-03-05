@@ -59,3 +59,5 @@ target/
 # Huna
 config.py
 huna_dashboard.log
+huna.sublime-project
+huna.sublime-workspace
