@@ -68,9 +68,11 @@ class ClouderaManager(BaseConnector):
     def server_stats(self):
         return self.list_of_dict_stats(self.server_status(), 'group')
 
-    def server_bad(self):
-        return filter(lambda x: x['group'] == 'OTHER', self.server_status())
+    def server_group(self, grp):
+        return filter(lambda x: x['group'] == grp, self.server_status())
 
+    def server_service_group(self, grp):
+        return ' ,'.join(map(lambda x: x['service'], self.server_group(grp)))
     @staticmethod
     def hc_line(data, container, unit):
         d = {
