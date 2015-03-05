@@ -201,6 +201,7 @@
 	      		<div class="dash-unit">
 		      		<dtitle>Cloudera Test Server status</dtitle>
 		      		<hr>
+		      		{% if cm.success %}
 		      		<div class="cont">
 						<p><bold>{{ cm.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
 						<p><bold>{{ cm.server_stats()['OTHER'] }}</bold> | OTHER</p>
@@ -212,9 +213,12 @@
 							</div>
 							{% endfor %}
 						</p>
-
 					</div>
-
+					{% else %}
+					<div class="cont">
+						<p>Not available.</p>
+					</div>   
+					{% endif %}
 				</div>
 	        </div>
 	        
