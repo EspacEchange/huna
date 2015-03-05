@@ -29,7 +29,7 @@ class ClouderaManager():
             for val in ts.data:
                 d[server].append(val.value)
 
-        return d
+        return {'xAxis': range(180, 1, -1), 'yAxis': d}
 
     def mem_usage(self):
         from_time = datetime.datetime.fromtimestamp(time.time() - 3 * 3600)
@@ -43,7 +43,7 @@ class ClouderaManager():
             for val in ts.data:
                 d[server].append(val.value)
 
-        return d
+        return {'xAxis': range(180, 1, -1), 'yAxis': d}
 
     def server_status(self):
         return [{'group': self.convert_health(s.healthSummary),
@@ -60,7 +60,29 @@ class ClouderaManager():
         return health
 
     def server_stats(self):
-        return utils.list_of_d_stats(self.server_status(), 'group')
+        return utils.list_of_dict_stats(self.server_status(), 'group')
 
     def server_bad(self):
         return filter(lambda x: x['group'] == 'OTHER', self.server_status())
+
+    @staticmethod
+    def hc_line(data, container, unit):
+        d = {
+            'chart': {'renderTo': container},
+            'title': {'text': ''},
+            'credits': {'enabled': False},
+            'xAxis': {'categories': data['xAxis']},
+            'yAxis': {
+                'title': {'enabled': False},
+                'plotLines': [{'value': 0, 'width': 1, 'color': '#808080'}]
+            },
+            'tooltip': {'valueSuffix': unit},
+            'legend': {
+                'enabled': False
+            },
+            'series': []
+        }
+        for key, value in data['yAxis'].iteritems():
+            d['series'].append({'name': key, 'data': value})
+
+        return d

@@ -51,16 +51,14 @@
 
 		  <!-- FIRST ROW OF BLOCKS -->     
 	      <div class="row">
-
-	      <!-- USER PROFILE BLOCK -->
 	        <div class="col-sm-3 col-lg-3">
 	      		<div class="dash-unit">
 		      		<dtitle>User Profile</dtitle>
 		      		<hr>
 					<div class="thumbnail">
-						<img src="static/img/logo-ee.jpg" alt="EspacEchange" class="img-circle">
+						<img src="static/img/logo-ee.jpg" alt="HUPI" class="img-circle">
 					</div><!-- /thumbnail -->
-					<h1>{{ config.SITE_NAME }}</h1>
+					<h1>HUPI TEST</h1>
 					<br>
 						<div class="info-user">
 							<span aria-hidden="true" class="li_user fs1"></span>
@@ -71,46 +69,47 @@
 					</div>
 	        </div>
 
-	      <!-- DONUT CHART BLOCK -->
+		  <!-- CLOUDERA TEST -->
 	        <div class="col-sm-3 col-lg-3">
 	      		<div class="dash-unit">
-			  		<dtitle>Site Bandwidth</dtitle>
-			  		<hr>
-		        	<div id="load"></div>
-		        	<h2>45%</h2>
-				</div>
-	        </div>
-
-	      <!-- DONUT CHART BLOCK -->
-	        <div class="col-sm-3 col-lg-3">
-	      		<div class="dash-unit">
-			  		<dtitle>Disk Space</dtitle>
-			  		<hr>
-		        	<div id="space"></div>
-		        	<h2>65%</h2>
-				</div>
-	        </div>
-	        
-	        <div class="col-sm-3 col-lg-3">
-
-	      <!-- LOCAL TIME BLOCK -->
-	      		<div class="half-unit">
-		      		<dtitle>Local Time</dtitle>
-		      		<hr>
-			      		<div class="clockcenter">
-				      		<digiclock>12:45:25</digiclock>
-			      		</div>
-				</div>
-
-	      <!-- SERVER UPTIME -->
-				<div class="half-unit">
-		      		<dtitle>Server Uptime</dtitle>
+		      		<dtitle>Cloudera Test Server status</dtitle>
 		      		<hr>
 		      		<div class="cont">
-						<p><img src="static/img/up.png" alt=""> <bold>Up</bold> | 356ms.</p>
+						<p><bold>{{ cm_prod.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
+						<p><bold>{{ cm_prod.server_stats()['OTHER'] }}</bold> | OTHER</p>
+						<p><bold>{{ cm_prod.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
+						<p>
+							{% for s in cm_prod.server_bad() %}
+							<div>
+								{{ s['service'] }}
+							</div>
+							{% endfor %}
+						</p>
 					</div>
 				</div>
+	        </div>
 
+		  <!-- 3 HOUR - CPU USAGE-->
+	        <div class="col-sm-3 col-lg-3">
+	      		<div class="dash-unit">
+		      		<dtitle>Last 3 Hour Memory Usage</dtitle>
+		      		<hr>
+					<div class="section-graph">
+						<div id="cloudera-prod-mem-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
+					</div>
+
+				</div>
+	        </div>
+		  <!-- 3 HOUR - MEMORY USAGE-->
+	        <div class="col-sm-3 col-lg-3">
+	      		<div class="dash-unit">
+		      		<dtitle>Last 3 Hour CPU Usage</dtitle>
+		      		<hr>
+					<div class="section-graph">
+						<div id="cloudera-prod-cpu-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
+					</div>
+
+				</div>
 	        </div>
 	      </div><!-- /row -->
 	      
@@ -118,122 +117,63 @@
 		  <!-- SECOND ROW OF BLOCKS -->     
 	      <div class="row">
 	        <div class="col-sm-3 col-lg-3">
-	       <!-- MAIL BLOCK -->
 	      		<div class="dash-unit">
-	      		<dtitle>Inbox (1)</dtitle>
-	      		<hr>
-	      		<div class="framemail">
-	    			<div class="window">
-				        <ul class="mail">
-				            <li>
-				                <i class="unread"></i>
-				                <img class="avatar" src="static/img/photo01.jpeg" alt="avatar">
-				                <p class="sender">Adam W.</p>
-				                <p class="message"><strong>Working</strong> - This is the last...</p>
-				                <div class="actions">
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-				                </div>
-				            </li>
-				            <li>
-				                <i class="read"></i>
-				                <img class="avatar" src="static/img/photo02.jpg" alt="avatar">
-				                <p class="sender">Dan E.</p>
-				                <p class="message"><strong>Hey man!</strong> - You have to taste ...</p>
-				                <div class="actions">
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-				                </div>
-				            </li>
-				            <li>
-				                <i class="read"></i>
-				                <img class="avatar" src="static/img/photo03.jpg" alt="avatar">
-				                <p class="sender">Leonard N.</p>
-				                <p class="message"><strong>New Mac :D</strong> - So happy with ...</p>
-				                <div class="actions">
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-				                </div>
-				            </li>
-				            <li>
-				                <i class="read"></i>
-				                <img class="avatar" src="static/img/photo04.jpg" alt="avatar">
-				                <p class="sender">Peter B.</p>
-				                <p class="message"><strong>Thank you</strong> - Finally I can ...</p>
-				                <div class="actions">
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-				                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-				                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-				                </div>
-				            </li>
-				        </ul>
-	    			</div>
-				</div>
-			</div><!-- /dash-unit -->
-	    </div><!-- /span3 -->
-
-		  <!-- GRAPH CHART - lineandbars.js file -->     
-	        <div class="col-sm-3 col-lg-3">
-	      		<div class="dash-unit">
-	      		<dtitle>Other Information</dtitle>
-	      		<hr>
-				    <div class="section-graph">
-				      <div id="importantchart"></div>
-				      <br>
-				      <div class="graph-info">
-				        <i class="graph-arrow"></i>
-				        <span class="graph-info-big">634.39</span>
-				        <span class="graph-info-small">+2.18 (3.71%)</span>
-				      </div>
-				    </div>
-				</div>
+		      		<dtitle>User Profile</dtitle>
+		      		<hr>
+					<div class="thumbnail">
+						<img src="static/img/logo-ee.jpg" alt="HUPI" class="img-circle">
+					</div><!-- /thumbnail -->
+					<h1>HUPI TEST</h1>
+					<br>
+						<div class="info-user">
+							<span aria-hidden="true" class="li_user fs1"></span>
+							<span aria-hidden="true" class="li_settings fs1"></span>
+							<span aria-hidden="true" class="li_mail fs1"></span>
+							<span aria-hidden="true" class="li_key fs1"></span>
+						</div>
+					</div>
 	        </div>
 
-		  <!-- LAST MONTH REVENUE -->     
+		  <!-- CLOUDERA TEST -->
 	        <div class="col-sm-3 col-lg-3">
 	      		<div class="dash-unit">
 		      		<dtitle>Cloudera Test Server status</dtitle>
 		      		<hr>
 		      		<div class="cont">
-						<p><bold>{{ cm.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
-						<p><bold>{{ cm.server_stats()['OTHER'] }}</bold> | OTHER</p>
-						<p><bold>{{ cm.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
+						<p><bold>{{ cm_test.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
+						<p><bold>{{ cm_test.server_stats()['OTHER'] }}</bold> | OTHER</p>
+						<p><bold>{{ cm_test.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
 						<p>
-							{% for s in cm.server_bad() %}
+							{% for s in cm_test.server_bad() %}
 							<div>
 								{{ s['service'] }}
 							</div>
 							{% endfor %}
 						</p>
-
+					</div>
+				</div>
+	        </div>
+	        
+		  <!-- 3 HOUR - CPU USAGE-->
+	        <div class="col-sm-3 col-lg-3">
+	      		<div class="dash-unit">
+		      		<dtitle>Last 3 Hour Memory Usage</dtitle>
+		      		<hr>
+					<div class="section-graph">
+						<div id="cloudera-test-mem-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
 					</div>
 
 				</div>
 	        </div>
-	        
-		  <!-- 30 DAYS STATS - CAROUSEL FLEXSLIDER -->     
+		  <!-- 3 HOUR - MEMORY USAGE-->
 	        <div class="col-sm-3 col-lg-3">
 	      		<div class="dash-unit">
-		      		<dtitle>Last 30 Days Stats</dtitle>
+		      		<dtitle>Last 3 Hour CPU Usage</dtitle>
 		      		<hr>
-		      		<br>
-		      		<br>
-		            <div class="flexslider">
-						<ul class="slides">
-							<li><img src="static/img/slide01.png" alt="slider"></li>
-							<li><img src="static/img/slide02.png" alt="slider"></li>
-						</ul>
-	            </div>
-					<div class="cont">
-						<p>StatCounter Information</p>
-					</div>   
+					<div class="section-graph">
+						<div id="cloudera-test-cpu-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
+					</div>
+
 				</div>
 	        </div>
 	      </div><!-- /row -->
@@ -597,5 +537,247 @@
 	<script type="text/javascript" src="static/js/jquery.flexslider.js" ></script>
 
     <script type="text/javascript" src="static/js/admin.js"></script>
+
+	<script type="text/javascript">
+			/**
+		 * Dark theme for Highcharts JS
+		 * @author Torstein Honsi
+		 */
+
+		// Load the fonts
+		Highcharts.createElement('link', {
+		   href: '//fonts.googleapis.com/css?family=Unica+One',
+		   rel: 'stylesheet',
+		   type: 'text/css'
+		}, null, document.getElementsByTagName('head')[0]);
+
+		Highcharts.theme = {
+		   colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+			  "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+		   chart: {
+			  backgroundColor:'rgba(255, 255, 255, 0)',
+			  style: {
+				 fontFamily: "'Unica One', sans-serif"
+			  },
+			  plotBorderColor: '#606063'
+		   },
+		   title: {
+			  style: {
+				 color: '#E0E0E3',
+				 textTransform: 'uppercase',
+				 fontSize: '20px'
+			  }
+		   },
+		   subtitle: {
+			  style: {
+				 color: '#E0E0E3',
+				 textTransform: 'uppercase'
+			  }
+		   },
+		   xAxis: {
+			  gridLineColor: '#707073',
+			  labels: {
+				 style: {
+					color: '#E0E0E3'
+				 }
+			  },
+			  lineColor: '#707073',
+			  minorGridLineColor: '#505053',
+			  tickColor: '#707073',
+			  title: {
+				 style: {
+					color: '#A0A0A3'
+
+				 }
+			  }
+		   },
+		   yAxis: {
+			  gridLineColor: '#707073',
+			  labels: {
+				 style: {
+					color: '#E0E0E3'
+				 }
+			  },
+			  lineColor: '#707073',
+			  minorGridLineColor: '#505053',
+			  tickColor: '#707073',
+			  tickWidth: 1,
+			  title: {
+				 style: {
+					color: '#A0A0A3'
+				 }
+			  }
+		   },
+		   tooltip: {
+			  backgroundColor: 'rgba(0, 0, 0, 0.85)',
+			  style: {
+				 color: '#F0F0F0'
+			  }
+		   },
+		   plotOptions: {
+			  series: {
+				 dataLabels: {
+					color: '#B0B0B3'
+				 },
+				 marker: {
+					lineColor: '#333'
+				 }
+			  },
+			  boxplot: {
+				 fillColor: '#505053'
+			  },
+			  candlestick: {
+				 lineColor: 'white'
+			  },
+			  errorbar: {
+				 color: 'white'
+			  }
+		   },
+		   legend: {
+			  itemStyle: {
+				 color: '#E0E0E3'
+			  },
+			  itemHoverStyle: {
+				 color: '#FFF'
+			  },
+			  itemHiddenStyle: {
+				 color: '#606063'
+			  }
+		   },
+		   credits: {
+			  style: {
+				 color: '#666'
+			  }
+		   },
+		   labels: {
+			  style: {
+				 color: '#707073'
+			  }
+		   },
+
+		   drilldown: {
+			  activeAxisLabelStyle: {
+				 color: '#F0F0F3'
+			  },
+			  activeDataLabelStyle: {
+				 color: '#F0F0F3'
+			  }
+		   },
+
+		   navigation: {
+			  buttonOptions: {
+				 symbolStroke: '#DDDDDD',
+				 theme: {
+					fill: '#505053'
+				 }
+			  }
+		   },
+
+		   // scroll charts
+		   rangeSelector: {
+			  buttonTheme: {
+				 fill: '#505053',
+				 stroke: '#000000',
+				 style: {
+					color: '#CCC'
+				 },
+				 states: {
+					hover: {
+					   fill: '#707073',
+					   stroke: '#000000',
+					   style: {
+						  color: 'white'
+					   }
+					},
+					select: {
+					   fill: '#000003',
+					   stroke: '#000000',
+					   style: {
+						  color: 'white'
+					   }
+					}
+				 }
+			  },
+			  inputBoxBorderColor: '#505053',
+			  inputStyle: {
+				 backgroundColor: '#333',
+				 color: 'silver'
+			  },
+			  labelStyle: {
+				 color: 'silver'
+			  }
+		   },
+
+		   navigator: {
+			  handles: {
+				 backgroundColor: '#666',
+				 borderColor: '#AAA'
+			  },
+			  outlineColor: '#CCC',
+			  maskFill: 'rgba(255,255,255,0.1)',
+			  series: {
+				 color: '#7798BF',
+				 lineColor: '#A6C7ED'
+			  },
+			  xAxis: {
+				 gridLineColor: '#505053'
+			  }
+		   },
+
+		   scrollbar: {
+			  barBackgroundColor: '#808083',
+			  barBorderColor: '#808083',
+			  buttonArrowColor: '#CCC',
+			  buttonBackgroundColor: '#606063',
+			  buttonBorderColor: '#606063',
+			  rifleColor: '#FFF',
+			  trackBackgroundColor: '#404043',
+			  trackBorderColor: '#404043'
+		   },
+
+		   // special colors for some of the
+		   legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+		   background2: '#505053',
+		   dataLabelsColor: '#B0B0B3',
+		   textColor: '#C0C0C0',
+		   contrastTextColor: '#F0F0F3',
+		   maskColor: 'rgba(255,255,255,0.3)'
+		};
+
+		// Apply the theme
+		Highcharts.setOptions(Highcharts.theme);
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$('#cloudera-test-mem-usage').highcharts(
+			{{ cm_test.hc_line(cm_test.mem_usage(),'cloudera-test-mem-usage','o')|tojson|safe }}
+			);
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$('#cloudera-test-cpu-usage').highcharts(
+			{{ cm_test.hc_line(cm_test.cpu_usage(),'cloudera-test-cpu-usage','o')|tojson|safe }}
+			);
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$('#cloudera-prod-mem-usage').highcharts(
+			{{ cm_prod.hc_line(cm_prod.mem_usage(),'cloudera-prod-mem-usage','o')|tojson|safe }}
+			);
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(function () {
+			$('#cloudera-prod-cpu-usage').highcharts(
+			{{ cm_prod.hc_line(cm_prod.cpu_usage(),'cloudera-prod-cpu-usage','o')|tojson|safe }}
+			);
+		});
+	</script>
 </body>
 </html>

@@ -29,11 +29,15 @@ app.logger.addHandler(handler)
 # Homepage
 @app.route('/')
 def index():
-    cm = ClouderaManager(app.config.get('CLOUDERA_HOST', '127.0.0.1'),
-                         app.config.get('CLOUDERA_PORT', 7180),
-                         app.config.get('CLOUDERA_USERNAME', 'admin'),
-                         app.config.get('CLOUDERA_PASSWORD', 'password'))
-    return render_template('layout.html', cm=cm)
+    cm_test = ClouderaManager(app.config.get('CLOUDERA_TEST_HOST', '127.0.0.1'),
+                         app.config.get('CLOUDERA_TEST_PORT', 7180),
+                         app.config.get('CLOUDERA_TEST_USERNAME', 'admin'),
+                         app.config.get('CLOUDERA_TEST_PASSWORD', 'password'))
+    cm_prod = ClouderaManager(app.config.get('CLOUDERA_PROD_HOST', '127.0.0.1'),
+                         app.config.get('CLOUDERA_PROD_PORT', 7180),
+                         app.config.get('CLOUDERA_PROD_USERNAME', 'admin'),
+                         app.config.get('CLOUDERA_PROD_PASSWORD', 'password'))
+    return render_template('layout.html', cm_test=cm_test, cm_prod=cm_prod)
 
 
 # Favicon route
