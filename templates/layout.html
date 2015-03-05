@@ -24,40 +24,40 @@
 </head>
 <body>
     <div class="page-wrapper">
-          <!-- NAVIGATION MENU -->
+        <!-- NAVIGATION MENU -->
 
         <div class="navbar-nav navbar-inverse navbar-fixed-top">
             <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/"><img src="static/img/logo30.png" alt=""> {{ config.SITE_NAME }}</a>
-            </div> 
-              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                  <li class="active"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
-                </ul>
-              </div><!--/.nav-collapse -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="static/img/logo30.png" alt=""> {{ config.SITE_NAME }}</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
                 <a href="https://github.com/EspacEchange/huna"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
             </div>
         </div>
 
         <div class="container">
 
-          <!-- FIRST ROW OF BLOCKS -->     
-          <div class="row">
-            <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>User Profile</dtitle>
-                      <hr>
-                    <div class="thumbnail">
-                        <img src="static/img/logo-ee.jpg" alt="HUPI" class="img-circle">
-                    </div><!-- /thumbnail -->
-                    <h1>HUPI TEST</h1>
-                    <br>
+            <!-- FIRST ROW OF BLOCKS -->
+            <div class="row">
+                <div class="col-sm-3 col-lg-3">
+                    <div class="dash-unit">
+                        <dtitle>User Profile</dtitle>
+                        <hr>
+                        <div class="thumbnail">
+                            <img src="static/img/logo-ee.jpg" alt="HUPI" class="img-circle">
+                        </div><!-- /thumbnail -->
+                        <h1>HUPI TEST</h1>
+                        <br>
                         <div class="info-user">
                             <span aria-hidden="true" class="li_user fs1"></span>
                             <span aria-hidden="true" class="li_settings fs1"></span>
@@ -65,60 +65,74 @@
                             <span aria-hidden="true" class="li_key fs1"></span>
                         </div>
                     </div>
-            </div>
+                </div>
 
-          <!-- CLOUDERA TEST -->
+            <!-- CLOUDERA TEST -->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Cloudera Test Server status</dtitle>
-                      <hr>
-                      <div class="cont">
-                          {% if cm_prod.success %}
-                          <p><bold>{{ cm_prod.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
-                          <p><bold>{{ cm_prod.server_stats()['OTHER'] }}</bold> | OTHER</p>
-                          <p>
-                              {{ cm_prod.server_service_group('OTHER') }}
-                          </p>
-                          <p><bold>{{ cm_prod.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
-                          <p>
+                <div class="dash-unit">
+                    <dtitle>Cloudera Test Server status</dtitle>
+                    <hr>
+                    {% if cm_prod.success %}
+                    <div class="cont">
+                        <p><bold>{{ cm_prod.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
+                        <p><bold>{{ cm_prod.server_stats()['OTHER'] }}</bold> | OTHER</p>
+                        <p>
+                            {{ cm_prod.server_service_group('OTHER') }}
+                        </p>
+                        <p><bold>{{ cm_prod.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
+                        <p>
                             {{ cm_prod.server_service_group('BAD') }}
-                          </p>
-                          {% endif %}
+                        </p>
                     </div>
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 
-          <!-- 3 HOUR - CPU USAGE-->
+            <!-- 3 HOUR - CPU USAGE-->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Last 3 Hour Memory Usage</dtitle>
-                      <hr>
+                <div class="dash-unit">
+                    <dtitle>Last 3 Hour Memory Usage</dtitle>
+                    <hr>
+                    {% if cm_prod.success %}
                     <div class="section-graph">
                         <div id="cloudera-prod-mem-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
                     </div>
-
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-          <!-- 3 HOUR - MEMORY USAGE-->
+
+            <!-- 3 HOUR - MEMORY USAGE-->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Last 3 Hour CPU Usage</dtitle>
-                      <hr>
+                <div class="dash-unit">
+                    <dtitle>Last 3 Hour CPU Usage</dtitle>
+                    <hr>
+                    {% if cm_prod.success %}
                     <div class="section-graph">
                         <div id="cloudera-prod-cpu-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
                     </div>
-
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-          </div><!-- /row -->
-          
-          
-          <!-- SECOND ROW OF BLOCKS -->     
-          <div class="row">
+        </div><!-- /row -->
+
+        <!-- SECOND ROW OF BLOCKS -->
+        <div class="row">
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>User Profile</dtitle>
-                      <hr>
+                <div class="dash-unit">
+                    <dtitle>User Profile</dtitle>
+                    <hr>
                     <div class="thumbnail">
                         <img src="static/img/logo-ee.jpg" alt="HUPI" class="img-circle">
                     </div><!-- /thumbnail -->
@@ -130,16 +144,15 @@
                             <span aria-hidden="true" class="li_mail fs1"></span>
                             <span aria-hidden="true" class="li_key fs1"></span>
                         </div>
-                    </div>
+                </div>
             </div>
-
-          <!-- CLOUDERA TEST -->
+            <!-- CLOUDERA TEST -->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Cloudera Test Server status</dtitle>
-                      <hr>
-                      {% if cm_test.success %}
-                      <div class="cont">
+                <div class="dash-unit">
+                    <dtitle>Cloudera Test Server status</dtitle>
+                    <hr>
+                    {% if cm_test.success %}
+                    <div class="cont">
                         <p><bold>{{ cm_test.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
                         <p><bold>{{ cm_test.server_stats()['OTHER'] }}</bold> | OTHER</p>
                         <p>
@@ -149,203 +162,127 @@
                         <p>
                             {{ cm_test.server_service_group('BAD') }}
                         </p>
-
                     </div>
-                      {% endif %}
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             
-          <!-- 3 HOUR - CPU USAGE-->
+            <!-- 3 HOUR - CPU USAGE-->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Last 3 Hour Memory Usage</dtitle>
-                      <hr>
+                <div class="dash-unit">
+                    <dtitle>Last 3 Hour Memory Usage</dtitle>
+                    <hr>
+                    {% if cm_test.success %}
                     <div class="section-graph">
                         <div id="cloudera-test-mem-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
                     </div>
-
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-          <!-- 3 HOUR - MEMORY USAGE-->
+            <!-- 3 HOUR - MEMORY USAGE-->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Last 3 Hour CPU Usage</dtitle>
-                      <hr>
+                <div class="dash-unit">
+                    {% if cm_test.success %}
+                    <dtitle>Last 3 Hour CPU Usage</dtitle>
+                    <hr>
                     <div class="section-graph">
                         <div id="cloudera-test-cpu-usage" style="min-width: 200px; height: 250px; margin: 0 auto"></div>
                     </div>
-
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
-          </div><!-- /row -->
-         
-     
-          <!-- THIRD ROW OF BLOCKS -->     
-          <div class="row">
-              <div class="col-sm-3 col-lg-3">
-          <!-- Production Status -->
-                 <div class="dash-unit">
-                 <dtitle>Production Status</dtitle>
-                 <hr>
-                     {% if False %}
-                     <div class="cont">
-                       <p><bold>{{ nr.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
-                       <p><bold>{{ nr.server_stats()['OTHER'] }}</bold> | OTHER</p>
-                       <p><bold>{{ nr.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
-                       <p>
-                           {% for s in nr.server_bad() %}
-                           <div>
-                               {{ s['service'] }}
-                           </div>
-                           {% endfor %}
-                       </p>
-                   </div>
-                   {% else %}
-                   <div class="cont">
-                       <p>Not available.</p>
-                   </div>
-                   {% endif %}
+        </div><!-- /row -->
+
+        <!-- THIRD ROW OF BLOCKS -->
+        <div class="row">
+            <!-- Production Status -->
+            <div class="col-sm-3 col-lg-3">
+                <div class="dash-unit">
+                    <dtitle>Production Status</dtitle>
+                    <hr>
+                    {% if False %}
+                    <div class="cont">
+                        <p><bold>{{ nr.server_stats()['GOOD'] }}</bold> | <ok>GOOD</ok></p>
+                        <p><bold>{{ nr.server_stats()['OTHER'] }}</bold> | OTHER</p>
+                        <p><bold>{{ nr.server_stats()['BAD'] }}</bold> | <bad>BAD</bad></p>
+                        <p>
+                            {% for s in nr.server_bad() %}
+                            <div>
+                                {{ s['service'] }}
+                            </div>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    {% else %}
+                    <div class="cont">
+                        <p>Not available.</p>
+                    </div>
+                    {% endif %}
                </div><!-- /dash-unit -->
            </div><!-- /span3 -->
 
-          <!-- Integration Status -->
+            <!-- Integration Status -->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                  <dtitle>Integration Status</dtitle>
-                  <hr>
+                <div class="dash-unit">
+                    <dtitle>Integration Status</dtitle>
+                    <hr>
                     <div class="section-graph">
-                      <div id="importantchart"></div>
-                      <br>
-                      <div class="graph-info">
-                        <i class="graph-arrow"></i>
-                        <span class="graph-info-big">634.39</span>
-                        <span class="graph-info-small">+2.18 (3.71%)</span>
-                      </div>
+                        <div id="importantchart"></div>
+                        <br>
+                        <div class="graph-info">
+                            <i class="graph-arrow"></i>
+                            <span class="graph-info-big">634.39</span>
+                            <span class="graph-info-small">+2.18 (3.71%)</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-          <!-- Dev Status -->
+            <!-- Dev Status -->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Dev Status</dtitle>
-                      <hr>
+                <div class="dash-unit">
+                    <dtitle>Dev Status</dtitle>
+                    <hr>
                 </div>
             </div>
-            
-          <!-- 30 DAYS STATS -->
+
+            <!-- 30 DAYS STATS -->
             <div class="col-sm-3 col-lg-3">
-                  <div class="dash-unit">
-                      <dtitle>Last 30 Days Stats</dtitle>
-                      <hr>
-                      <br>
-                      <br>
+                <div class="dash-unit">
+                    <dtitle>Last 30 Days Stats</dtitle>
+                    <hr>
+                    <br>
+                    <br>
                     <div class="cont">
                         <p>StatCounter Information</p>
                     </div>   
                 </div>
             </div>
           </div><!-- /row -->
-          
-           <!-- FOURTH ROW OF BLOCKS -->
-            <div class="row">
-
-           <!-- ACCORDION BLOCK -->
-                <div class="col-sm-3 col-lg-3">
-                    <div class="dash-unit">
-                      <dtitle>Accordion</dtitle>
-                      <hr>
-                    </div>
-                </div>
-                
-                <div class="col-sm-3 col-lg-3">
-
-                   <!-- LAST USER BLOCK -->
-                    <div class="half-unit">
-                      <dtitle>Last Registered User</dtitle>
-                      <hr>
-                          <div class="cont2">
-                              <img src="static/img/user-avatar.jpg" alt="">
-                              <br>
-                              <br>
-                              <p>Paul Smith</p>
-                              <p><bold>Liverpool, England</bold></p>
-                          </div>
-                    </div>
-
-                   <!-- MODAL BLOCK -->
-                    <div class="half-unit">
-                      <dtitle>Modal</dtitle>
-                      <hr>
-                        <div class="cont">
-                            <a href="#myModal" role="button" class="btnnew" data-toggle="modal">Example Modal Window</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal -->
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                  </div><!-- /.modal -->
-                   <!-- FAST CONTACT BLOCK -->
-                <div class="col-sm-3 col-lg-3">
-                    <div class="dash-unit">
-                      <dtitle>Fast Contact</dtitle>
-                      <hr>
-                      <div class="cont">
-                        <form action="#get-in-touch" method="POST" id="contact">
-                            <input type="text" id="contactname" name="contactname" placeholder="Name">
-                            <input type="text" id="email" name="email" placeholder="Email">
-                            <div class="textarea-container"><textarea id="message" name="message" placeholder="Message"></textarea></div>
-                            <input type="submit" id="submit" name="submit" value="Send">
-                        </form>
-                    </div>
-                    </div>
-                </div>
-
-                   <!-- INFORMATION BLOCK -->
-                <div class="col-sm-3 col-lg-3">
-                    <div class="dash-unit">
-                      <dtitle>{{ config.SITE_NAME }}</dtitle>
-                      <hr>
-                      <div class="info-user">
-                        <span aria-hidden="true" class="li_display fs2"></span>
-                    </div>
-                    <br>
-                    <div class="text">
-                    <p>Special Thanks to Highcharts and Bootstrap for their amazing tools.</p>
-                    </div>
-
-                    </div>
-                </div>
-
-            </div><!--/row -->
         </div><!-- /container -->
-    </div>
+    </div><!-- /page-wrapper -->
     <div id="footerwrap">
-          <footer class="clearfix"></footer>
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm-12 col-lg-12">
-                  <p><img src="static/img/logo.png" alt=""></p>
-                  <p>{{ config.SITE_NAME }}</p>
-                  </div>
-
-              </div><!-- /row -->
-          </div><!-- /container -->
+        <footer class="clearfix"></footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <p><img src="static/img/logo.png" alt=""></p>
+                    <p>{{ config.SITE_NAME }}</p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
     </div><!-- /footerwrap -->
     <!-- Le javascript -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
